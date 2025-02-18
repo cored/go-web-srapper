@@ -1,4 +1,4 @@
-# Go Concurrent Web Scraper: My Learning Journey
+# Go Concurrent Web Scraper
 
 My journey of learning and implementing concurrent programming in Go through the development of a web scraper.
 
