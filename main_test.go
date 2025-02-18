@@ -39,3 +39,28 @@ func TestScrape(t *testing.T) {
 
 
 }
+
+func TestScrapeConcurrent(t *testing.T) {
+	server1 := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("<html><body>Hello, from server 1!</body></html>"))
+	}))
+	defer server1.Close()
+
+	server2 := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("<html><body>Hello, from server 2!</body></html>"))
+	}))
+
+	defer server2.Close()
+
+	urls := []string{server1.URL, server2.URL}
+
+	scraper := NewScrapper()
+	results := scraper.ScrapeConcurrent(urls)
+
+	if len(results) != 2 {
+		t.Errorf("Expected 2 results, but got %d", len(results))
+	}
+
+}
