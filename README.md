@@ -32,15 +32,9 @@ As I build this project, I'm exploring key concepts like goroutines, channels, a
 
 ```
 .
-├── cmd/
-│   └── scraper/
-│       └── main.go
-├── internal/
-│   └── scraper/
-│       ├── scraper.go
-│       └── scraper_test.go
+├── main.go
+└── main_test.go
 ├── go.mod
-├── go.sum
 └── README.md
 ```
 
