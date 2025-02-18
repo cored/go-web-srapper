@@ -41,7 +41,7 @@ As I build this project, I'm exploring key concepts like goroutines, channels, a
 1. Clone this repository
 2. Navigate to the project directory
 3. Run `go test ./...` to execute the tests
-4. Run `go run cmd/scraper/main.go` to start the scraper
+4. Run `go run main.go` to start the scraper
 
 ## 📝 Notes and Observations
 
