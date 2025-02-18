@@ -1,7 +1,5 @@
 # Go Concurrent Web Scraper: My Learning Journey
 
-## 🚀 About This Project
-
 My journey of learning and implementing concurrent programming in Go through the development of a web scraper.
 
 As I build this project, I'm exploring key concepts like goroutines, channels, and rate limiting, all while adhering to Test-Driven Development (TDD) principles.
