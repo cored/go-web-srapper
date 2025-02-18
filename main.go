@@ -4,10 +4,17 @@ import (
 	"net/http"
 	"time"
 	"io"
+	"sync"
 )
 
 type Scrapper struct {
 	client *http.Client
+}
+
+type ScrapedHTML struct {
+	URL     string
+	Content string
+	Error   error
 }
 
 func NewScrapper() *Scrapper {
@@ -32,4 +39,22 @@ func (s *Scrapper) Scrape(url string) (string, error) {
 	}
 
 	return string(body), nil
+}
+
+func (s *Scrapper) ScrapeConcurrent(urls []string) []ScrapedHTML {
+	var wg sync.WaitGroup
+	results := make([]ScrapedHTML, len(urls))
+
+	for i, url := range urls {
+		wg.Add(1)
+		go func(i int, url string) {
+			defer wg.Done()
+			content, err := s.Scrape(url)
+			results[i] = ScrapedHTML{url, content, err}
+		}(i, url)
+	}
+
+	wg.Wait()
+
+	return results
 }
