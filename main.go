@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 	"time"
+	"io"
 )
 
 type Scrapper struct {
